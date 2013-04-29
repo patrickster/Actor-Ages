@@ -42,9 +42,10 @@ def load_chart(year, resolved=False, dir='data/'):
   Args:
     year: year of chart.
     resolved: whether or not to load the resolved version of the chart.
+    dir: a path to the directory where the charts are located.
   Returns:
     A list of dictionaries, each containing data for a row in the chart.
-    
+
   """
   if resolved:
     file_name = '%schart-%d-resolved.csv' % (dir, year)

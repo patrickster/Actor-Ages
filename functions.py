@@ -1,4 +1,3 @@
-
 import time
 import requests
 import csv
@@ -11,6 +10,7 @@ def pause(min_length=1):
 
   Args:
     min_length: the minimum pause length, in seconds.
+
   """
   pause_length = min_length + abs(random.normalvariate(0, 3))
   print "Pausing for " + str(int(pause_length)) + " seconds"
@@ -19,13 +19,14 @@ def pause(min_length=1):
 
 def request_page(url, headers={'User-Agent' : 'Mozilla/4.0 (compatible; MSIE 6.1; Windows XP)'}):
   """ 
-  Wrapper for requests.get(). 
+  Wrapper for requests.get().  
 
   Args:
     url: the url to request.
-    headers: headers to pass to requests.get().
+    headers: headers to pass to requests.get().   
   Returns:
-    None if page request fails, page content otherwise.
+    Page content if request succeeds, None otherwise.
+
   """
   r = requests.get(url, headers=headers)
   if r.status_code != 200:
@@ -36,11 +37,14 @@ def request_page(url, headers={'User-Agent' : 'Mozilla/4.0 (compatible; MSIE 6.1
 
 def load_chart(year, resolved=False, dir='data/'):
   """ 
-  Loads the chart for a given year. 
+  Loads the content of a yearly box office chart. 
 
-  Parameters:
-  @year 
-
+  Args:
+    year: year of chart.
+    resolved: whether or not to load the resolved version of the chart.
+  Returns:
+    A list of dictionaries, each containing data for a row in the chart.
+    
   """
   if resolved:
     file_name = '%schart-%d-resolved.csv' % (dir, year)
